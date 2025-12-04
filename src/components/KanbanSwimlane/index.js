@@ -1,0 +1,1 @@
+export { KanbanSwimlane } from './KanbanSwimlane';

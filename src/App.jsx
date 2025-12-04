@@ -2,7 +2,11 @@ import { KanbanBoard } from './components';
 import './styles/global.css';
 
 function App() {
-  return <KanbanBoard />;
+  return (
+    <div className="kanban-center">
+      <KanbanBoard />
+    </div>
+  );
 }
 
 export default App;

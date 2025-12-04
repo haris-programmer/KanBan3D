@@ -1,0 +1,186 @@
+/* =========================================
+   Kanban Swimlane Layout
+   ========================================= */
+
+.kanban-swimlane {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border-subtle);
+  width: 100%;
+  max-width: 100%;
+}
+
+.kanban-swimlane:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* Swimlane Header */
+.kanban-swimlane__header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 6px 12px;
+  
+  background: transparent;
+  border-bottom: 2px solid var(--color-primary);
+  
+  transition: all var(--transition-base);
+}
+
+.kanban-swimlane__header:hover {
+  background: rgba(80, 81, 249, 0.05);
+}
+
+.kanban-swimlane__header-content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* Toggle Button */
+.kanban-swimlane__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-primary);
+  padding: 0;
+  
+  transition: all var(--transition-base);
+}
+
+.kanban-swimlane__toggle:hover {
+  color: var(--color-primary);
+}
+
+.kanban-swimlane__toggle svg {
+  width: 14px;
+  height: 14px;
+}
+
+.kanban-swimlane__title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.kanban-swimlane__task-count {
+  padding: 2px 6px;
+  
+  background: var(--bg-input);
+  border-radius: var(--radius-sm);
+  
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  
+  border: none;
+  white-space: nowrap;
+}
+
+/* Swimlane Columns Container */
+.kanban-swimlane__columns {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 0 var(--space-md);
+  
+  /* Scrollbar styling */
+  scroll-behavior: smooth;
+  animation: slideDown 200ms ease-out;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 1000px;
+  }
+}
+
+.kanban-swimlane__columns::-webkit-scrollbar {
+  height: 4px;
+}
+
+.kanban-swimlane__columns::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.kanban-swimlane__columns::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: var(--radius-md);
+  transition: background var(--transition-base);
+}
+
+.kanban-swimlane__columns::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Light Mode Adjustments */
+@media (prefers-color-scheme: light) {
+  .kanban-swimlane__header {
+    border-bottom-color: var(--color-primary);
+  }
+
+  .kanban-swimlane__header:hover {
+    background: rgba(80, 81, 249, 0.03);
+  }
+
+  .kanban-swimlane__title {
+    color: #374151;
+  }
+
+  .kanban-swimlane__task-count {
+    background: #E5E7EB;
+    color: #6B7280;
+  }
+
+  .kanban-swimlane__toggle {
+    color: #6B7280;
+  }
+
+  .kanban-swimlane__toggle:hover {
+    color: var(--color-primary);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .kanban-swimlane {
+    padding-bottom: 2px;
+  }
+
+  .kanban-swimlane__header {
+    padding: 4px 8px;
+  }
+
+  .kanban-swimlane__title {
+    font-size: 0.8rem;
+  }
+
+  .kanban-swimlane__task-count {
+    font-size: 0.65rem;
+    padding: 1px 4px;
+  }
+
+  .kanban-swimlane__columns {
+    padding: 0 var(--space-sm);
+    gap: var(--space-sm);
+  }
+}

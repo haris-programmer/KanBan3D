@@ -45,10 +45,10 @@
   --color-info: #1EA7FF;
 
   /* ---- Dark Mode (Default) ---- */
-  --bg-page: #1E1F25;
-  --bg-card: #212329;
-  --bg-input: #282932;
-  --bg-elevated: #2A2B33;
+  --bg-page: #0F1419;
+  --bg-card: #151B28;
+  --bg-input: #1A2235;
+  --bg-elevated: #1D2538;
 
   --text-primary: #FFFFFF;
   --text-secondary: #898999;
@@ -60,8 +60,8 @@
 
   /* ---- Neumorphic Shadows (Dark Mode) ---- */
   /* Light source: top-left */
-  --neu-shadow-light: #2D2E38;
-  --neu-shadow-dark: #14151A;
+  --neu-shadow-light: #1D2538;
+  --neu-shadow-dark: #080A0F;
   
   /* Raised element (convex) - default state */
   --neu-raised: 
@@ -107,6 +107,41 @@
   --z-sticky: 200;
   --z-modal: 300;
   --z-dragging: 400;
+}
+
+/* Light Mode Overrides */
+[data-theme="light"] {
+  /* ---- Neumorphic Shadows (Light Mode) ---- */
+  --neu-shadow-light: #FFFFFF;
+  --neu-shadow-dark: #D0D5DD;
+  
+  --neu-raised: 
+    6px 6px 12px rgba(0, 0, 0, 0.08),
+    -6px -6px 12px rgba(255, 255, 255, 0.8);
+  
+  --neu-raised-sm: 
+    3px 3px 6px rgba(0, 0, 0, 0.06),
+    -3px -3px 6px rgba(255, 255, 255, 0.7);
+
+  --neu-raised-lg: 
+    10px 10px 20px rgba(0, 0, 0, 0.1),
+    -10px -10px 20px rgba(255, 255, 255, 0.9);
+  
+  --neu-inset: 
+    inset 4px 4px 8px rgba(0, 0, 0, 0.08),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.8);
+  
+  --neu-inset-sm: 
+    inset 2px 2px 4px rgba(0, 0, 0, 0.06),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.7);
+
+  --neu-hover: 
+    8px 8px 16px rgba(0, 0, 0, 0.1),
+    -8px -8px 16px rgba(255, 255, 255, 0.9);
+
+  --neu-pressed: 
+    inset 3px 3px 6px rgba(0, 0, 0, 0.08),
+    inset -3px -3px 6px rgba(255, 255, 255, 0.8);
 }
 
 /* Respect reduced motion preference */

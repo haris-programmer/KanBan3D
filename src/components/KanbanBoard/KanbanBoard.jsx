@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { KanbanColumn } from '../KanbanColumn';
+import { KanbanSwimlane } from '../KanbanSwimlane';
 import { Button } from '../Button';
+import { ThemeToggle } from '../ThemeToggle';
 import './KanbanBoard.css';
 
 // Demo data
@@ -11,10 +12,17 @@ const initialColumns = [
   { id: 'done', title: 'Done', status: 'done' },
 ];
 
+const initialSwimlanes = [
+  { id: 'frontend', name: 'Frontend Team' },
+  { id: 'backend', name: 'Backend Team' },
+  { id: 'devops', name: 'DevOps Team' },
+];
+
 const initialTasks = [
   {
     id: '1',
     columnId: 'todo',
+    swimlaneId: 'frontend',
     title: 'Design new dashboard layout',
     description: 'Create wireframes and mockups for the analytics dashboard.',
     priority: 'high',
@@ -25,6 +33,7 @@ const initialTasks = [
   {
     id: '2',
     columnId: 'todo',
+    swimlaneId: 'backend',
     title: 'Implement user authentication',
     priority: 'high',
     tags: ['Backend', 'Security'],
@@ -34,6 +43,7 @@ const initialTasks = [
   {
     id: '3',
     columnId: 'todo',
+    swimlaneId: 'backend',
     title: 'Write API documentation',
     description: 'Document all REST endpoints with examples.',
     priority: 'medium',
@@ -43,6 +53,7 @@ const initialTasks = [
   {
     id: '4',
     columnId: 'in-progress',
+    swimlaneId: 'frontend',
     title: 'Build notification system',
     description: 'Real-time notifications using WebSockets.',
     priority: 'high',
@@ -53,6 +64,7 @@ const initialTasks = [
   {
     id: '5',
     columnId: 'in-progress',
+    swimlaneId: 'devops',
     title: 'Optimize database queries',
     priority: 'medium',
     tags: ['Performance'],
@@ -61,6 +73,7 @@ const initialTasks = [
   {
     id: '6',
     columnId: 'review',
+    swimlaneId: 'frontend',
     title: 'Mobile responsive fixes',
     description: 'Fix layout issues on tablet and mobile views.',
     priority: 'medium',
@@ -71,6 +84,7 @@ const initialTasks = [
   {
     id: '7',
     columnId: 'done',
+    swimlaneId: 'backend',
     title: 'Set up CI/CD pipeline',
     priority: 'low',
     tags: ['DevOps'],
@@ -79,6 +93,7 @@ const initialTasks = [
   {
     id: '8',
     columnId: 'done',
+    swimlaneId: 'frontend',
     title: 'Create component library',
     description: 'Build reusable UI components with Storybook.',
     priority: 'low',
@@ -128,10 +143,11 @@ export function KanbanBoard() {
     setDragOverColumn(null);
   };
 
-  const handleAddTask = (columnId) => {
+  const handleAddTask = (columnId, swimlaneId) => {
     const newTask = {
       id: `task-${Date.now()}`,
       columnId,
+      swimlaneId,
       title: 'New Task',
       description: 'Click to edit this task.',
       priority: 'medium',
@@ -177,6 +193,8 @@ export function KanbanBoard() {
             />
           </div>
           
+          <ThemeToggle />
+
           <Button variant="primary">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <line x1="12" y1="5" x2="12" y2="19" />
@@ -193,17 +211,18 @@ export function KanbanBoard() {
 
       {/* Board */}
       <main className="kanban-main">
-        {initialColumns.map(column => (
-          <KanbanColumn
-            key={column.id}
-            column={column}
-            tasks={getTasksForColumn(column.id)}
+        {initialSwimlanes.map(swimlane => (
+          <KanbanSwimlane
+            key={swimlane.id}
+            swimlane={swimlane}
+            columns={initialColumns}
+            tasks={tasks}
             onDragStart={handleDragStart}
             onDragEnd={handleDragEnd}
             onDragOver={handleDragOver}
             onDrop={handleDrop}
             onAddTask={handleAddTask}
-            isDragOver={dragOverColumn === column.id}
+            dragOverColumn={dragOverColumn}
           />
         ))}
       </main>

@@ -13,6 +13,7 @@ export function KanbanColumn({
   isDragOver = false
 }) {
   const [isAddBtnHovered, setIsAddBtnHovered] = useState(false);
+  const [showAll, setShowAll] = useState(false);
   const { id, title, status } = column;
 
   const getIndicatorClass = () => {
@@ -62,14 +63,24 @@ export function KanbanColumn({
             <p className="kanban-column__empty-text">No tasks yet</p>
           </div>
         ) : (
-          tasks.map((task) => (
-            <TaskCard 
-              key={task.id} 
-              task={task}
-              onDragStart={onDragStart}
-              onDragEnd={onDragEnd}
-            />
-          ))
+          <>
+            {(showAll ? tasks : tasks.slice(0, 1)).map((task) => (
+              <TaskCard 
+                key={task.id} 
+                task={task}
+                onDragStart={onDragStart}
+                onDragEnd={onDragEnd}
+              />
+            ))}
+            {tasks.length > 1 && !showAll && (
+              <button
+                className="kanban-column__load-more"
+                onClick={() => setShowAll(true)}
+              >
+                Load More
+              </button>
+            )}
+          </>
         )}
       </div>
 
