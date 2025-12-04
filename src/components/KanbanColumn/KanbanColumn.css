@@ -1,0 +1,240 @@
+/* =========================================
+   3D Neumorphic Kanban Column Component
+   ========================================= */
+
+.kanban-column {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  min-width: 320px;
+  max-height: calc(100vh - 160px);
+  
+  background: var(--bg-card);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--neu-raised);
+  
+  overflow: hidden;
+}
+
+/* Column header */
+.kanban-column__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) var(--space-lg);
+  
+  background: linear-gradient(145deg, var(--bg-elevated), var(--bg-card));
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.kanban-column__header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.kanban-column__indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-round);
+  box-shadow: var(--neu-raised-sm);
+}
+
+.kanban-column__indicator--todo {
+  background: linear-gradient(145deg, var(--color-secondary-light), var(--color-secondary));
+}
+
+.kanban-column__indicator--in-progress {
+  background: linear-gradient(145deg, var(--color-primary-light), var(--color-primary));
+  box-shadow: 
+    0 0 8px var(--color-primary-glow),
+    var(--neu-raised-sm);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.kanban-column__indicator--review {
+  background: linear-gradient(145deg, #FFB347, var(--color-warning));
+}
+
+.kanban-column__indicator--done {
+  background: linear-gradient(145deg, #2AD968, var(--color-success));
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.kanban-column__title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.kanban-column__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 6px;
+  
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  
+  background: var(--bg-input);
+  border-radius: var(--radius-md);
+  box-shadow: var(--neu-inset-sm);
+}
+
+/* Column actions */
+.kanban-column__actions {
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.kanban-column__action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--bg-input);
+  box-shadow: var(--neu-raised-sm);
+  
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: 
+    box-shadow var(--transition-base),
+    color var(--transition-fast);
+}
+
+.kanban-column__action-btn:hover {
+  color: var(--text-primary);
+  box-shadow: var(--neu-raised);
+}
+
+.kanban-column__action-btn:active {
+  box-shadow: var(--neu-pressed);
+}
+
+.kanban-column__action-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Column body - task list */
+.kanban-column__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  
+  overflow-y: auto;
+  min-height: 200px;
+}
+
+/* Drop zone styling */
+.kanban-column__body--drag-over {
+  background: rgba(80, 81, 249, 0.05);
+  box-shadow: 
+    inset 0 0 20px rgba(80, 81, 249, 0.1);
+}
+
+.kanban-column__drop-indicator {
+  height: 4px;
+  margin: var(--space-sm) 0;
+  
+  background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+  border-radius: var(--radius-sm);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.kanban-column__drop-indicator--visible {
+  opacity: 1;
+}
+
+/* Empty state */
+.kanban-column__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl);
+  
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.kanban-column__empty-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--space-md);
+  
+  background: var(--bg-input);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--neu-inset);
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kanban-column__empty-icon svg {
+  width: 24px;
+  height: 24px;
+  color: var(--text-muted);
+}
+
+.kanban-column__empty-text {
+  font-size: 0.875rem;
+}
+
+/* Add task button in column */
+.kanban-column__footer {
+  padding: var(--space-md);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.kanban-column__add-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  
+  background: var(--bg-input);
+  border: none;
+  border-radius: var(--radius-md);
+  box-shadow: var(--neu-inset-sm);
+  
+  cursor: pointer;
+  transition: 
+    color var(--transition-fast),
+    box-shadow var(--transition-base);
+}
+
+.kanban-column__add-btn:hover {
+  color: var(--color-primary-light);
+  box-shadow: var(--neu-raised-sm);
+}
+
+.kanban-column__add-btn:active {
+  box-shadow: var(--neu-inset);
+}
+
+.kanban-column__add-btn svg {
+  width: 18px;
+  height: 18px;
+}

@@ -1,0 +1,240 @@
+/* =========================================
+   Kanban Board Layout
+   ========================================= */
+
+.kanban-board {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--bg-page);
+}
+
+/* Header */
+.kanban-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-lg) var(--space-xl);
+  
+  background: linear-gradient(145deg, var(--bg-elevated), var(--bg-card));
+  border-bottom: 1px solid var(--border-subtle);
+  box-shadow: var(--neu-raised-sm);
+}
+
+.kanban-header__left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.kanban-header__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.kanban-header__logo-icon {
+  width: 40px;
+  height: 40px;
+  
+  background: linear-gradient(145deg, var(--color-primary-light), var(--color-primary));
+  border-radius: var(--radius-md);
+  box-shadow: var(--neu-raised-sm);
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kanban-header__logo-icon svg {
+  width: 24px;
+  height: 24px;
+  color: var(--text-primary);
+}
+
+.kanban-header__logo-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--color-primary-light), var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.kanban-header__project {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  padding-left: var(--space-lg);
+  border-left: 1px solid var(--border-color);
+}
+
+.kanban-header__right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+/* Search bar - neumorphic inset */
+.kanban-search {
+  position: relative;
+  width: 280px;
+}
+
+.kanban-search__input {
+  width: 100%;
+  padding: 10px 16px 10px 40px;
+  
+  font-family: var(--font-primary);
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  
+  background: var(--bg-input);
+  border: none;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--neu-inset-sm);
+  
+  transition: box-shadow var(--transition-base);
+}
+
+.kanban-search__input::placeholder {
+  color: var(--text-muted);
+}
+
+.kanban-search__input:focus {
+  outline: none;
+  box-shadow: 
+    var(--neu-inset-sm),
+    0 0 0 2px var(--color-primary);
+}
+
+.kanban-search__icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  
+  width: 16px;
+  height: 16px;
+  color: var(--text-muted);
+}
+
+/* Avatar */
+.kanban-avatar {
+  width: 40px;
+  height: 40px;
+  
+  background: linear-gradient(145deg, var(--color-secondary-light), var(--color-secondary));
+  border-radius: var(--radius-round);
+  box-shadow: var(--neu-raised-sm);
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  
+  cursor: pointer;
+  transition: box-shadow var(--transition-base);
+}
+
+.kanban-avatar:hover {
+  box-shadow: var(--neu-raised);
+}
+
+/* Main board area */
+.kanban-main {
+  flex: 1;
+  display: flex;
+  gap: var(--space-lg);
+  padding: var(--space-xl);
+  
+  overflow-x: auto;
+}
+
+/* Toggle switch - neumorphic style */
+.neu-toggle {
+  position: relative;
+  width: 56px;
+  height: 28px;
+  
+  background: var(--bg-input);
+  border-radius: 28px;
+  box-shadow: var(--neu-inset-sm);
+  
+  cursor: pointer;
+  transition: background var(--transition-base);
+}
+
+.neu-toggle--active {
+  background: linear-gradient(145deg, var(--color-primary-light), var(--color-primary));
+  box-shadow: 
+    inset 2px 2px 4px rgba(0, 0, 0, 0.2),
+    0 0 12px var(--color-primary-glow);
+}
+
+.neu-toggle__knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  
+  background: linear-gradient(145deg, var(--bg-elevated), var(--bg-card));
+  border-radius: var(--radius-round);
+  box-shadow: var(--neu-raised-sm);
+  
+  transition: transform var(--transition-base);
+}
+
+.neu-toggle--active .neu-toggle__knob {
+  transform: translateX(28px);
+  background: var(--text-primary);
+}
+
+/* Slider - neumorphic style */
+.neu-slider {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  
+  background: var(--bg-input);
+  border-radius: 8px;
+  box-shadow: var(--neu-inset-sm);
+}
+
+.neu-slider__track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  border-radius: 8px;
+}
+
+.neu-slider__thumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  
+  width: 20px;
+  height: 20px;
+  
+  background: linear-gradient(145deg, #fff, #e0e0e0);
+  border-radius: var(--radius-round);
+  box-shadow: var(--neu-raised-sm);
+  
+  cursor: grab;
+  transition: box-shadow var(--transition-base);
+}
+
+.neu-slider__thumb:hover {
+  box-shadow: var(--neu-raised);
+}
+
+.neu-slider__thumb:active {
+  cursor: grabbing;
+  box-shadow: var(--neu-pressed);
+}
