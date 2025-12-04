@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { TaskCard } from '../TaskCard';
 import './KanbanColumn.css';
 
@@ -11,6 +12,7 @@ export function KanbanColumn({
   onAddTask,
   isDragOver = false
 }) {
+  const [isAddBtnHovered, setIsAddBtnHovered] = useState(false);
   const { id, title, status } = column;
 
   const getIndicatorClass = () => {
@@ -75,12 +77,25 @@ export function KanbanColumn({
         <button 
           className="kanban-column__add-btn"
           onClick={() => onAddTask?.(id)}
+          style={{
+            transform: isAddBtnHovered ? 'scale(1.02)' : 'scale(1)',
+          }}
+          onMouseEnter={() => setIsAddBtnHovered(true)}
+          onMouseLeave={() => setIsAddBtnHovered(false)}
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ position: 'relative', zIndex: 1 }}>
-            <line x1="12" y1="5" x2="12" y2="19" />
-            <line x1="5" y1="12" x2="19" y2="12" />
-          </svg>
-          <span style={{ position: 'relative', zIndex: 1 }}>Add Task</span>
+          {/* Glow effect layers */}
+          <div className="kanban-column__glow-outer" />
+          <div className="kanban-column__glow-inner" />
+          <div className="kanban-column__glow-center" />
+
+          {/* Content */}
+          <span className="kanban-column__add-content">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+            <span>Add Task</span>
+          </span>
         </button>
       </div>
     </div>

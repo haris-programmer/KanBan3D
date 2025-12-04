@@ -207,56 +207,105 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-sm);
+  gap: 12px;
   width: 100%;
-  padding: 12px var(--space-md);
+  padding: 16px var(--space-md);
   
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--text-primary);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  font-family: 'Inter', 'DM Sans', sans-serif;
+  color: #ffffff;
+  letter-spacing: 0.02em;
   
-  background: linear-gradient(135deg, #7C5FFF 0%, #5051F9 50%, #4142E0 100%);
+  background: linear-gradient(135deg, rgba(88, 60, 180, 0.4) 0%, rgba(120, 80, 200, 0.5) 30%, rgba(100, 70, 190, 0.35) 70%, rgba(70, 50, 150, 0.4) 100%);
   border: none;
-  border-radius: var(--radius-md);
-  box-shadow: 
-    0 6px 16px rgba(80, 81, 249, 0.35),
-    inset -1px -1px 6px rgba(0, 0, 0, 0.25),
-    inset 1px 1px 6px rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
   
   cursor: pointer;
-  transition: 
-    box-shadow var(--transition-base),
-    transform var(--transition-fast),
-    background var(--transition-base);
-}
-
-.kanban-column__add-btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: var(--radius-md);
+  overflow: hidden;
   
-  background: radial-gradient(circle at 30% 30%, rgba(107, 108, 250, 0.25), transparent 60%);
-  pointer-events: none;
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 0 20px rgba(130, 90, 220, 0.15),
+    0 0 40px rgba(110, 70, 200, 0.07),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  
+  transition: all 0.3s ease;
+  user-select: none;
 }
 
 .kanban-column__add-btn:hover {
-  background: linear-gradient(135deg, #8B70FF 0%, #6B6CFA 50%, #5051F9 100%);
   box-shadow: 
-    0 8px 18px rgba(80, 81, 249, 0.3),
-    0 0 12px rgba(80, 81, 249, 0.15),
-    inset -1px -1px 6px rgba(0, 0, 0, 0.25),
-    inset 1px 1px 6px rgba(255, 255, 255, 0.15);
-  transform: translateY(-1px);
+    0 0 28px rgba(130, 90, 220, 0.22),
+    0 0 55px rgba(110, 70, 200, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
 }
 
 .kanban-column__add-btn:active {
-  background: linear-gradient(135deg, #6B6CFA 0%, #5051F9 50%, #4142E0 100%);
+  transform: scale(0.98) !important;
   box-shadow: 
-    0 3px 8px rgba(80, 81, 249, 0.25),
-    inset -2px -2px 8px rgba(0, 0, 0, 0.35),
-    inset 2px 2px 8px rgba(255, 255, 255, 0.08);
-  transform: translateY(0);
+    0 0 15px rgba(130, 90, 220, 0.12),
+    0 0 30px rgba(110, 70, 200, 0.05),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Glow layers for Add Task button */
+.kanban-column__glow-outer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 150%;
+  
+  background: radial-gradient(ellipse at center, rgba(140, 100, 230, 0.35) 0%, rgba(100, 60, 200, 0.15) 40%, transparent 70%);
+  pointer-events: none;
+  filter: blur(20px);
+}
+
+.kanban-column__glow-inner {
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 80%;
+  
+  background: radial-gradient(ellipse at center, rgba(160, 120, 255, 0.4) 0%, rgba(130, 90, 220, 0.25) 30%, transparent 60%);
+  pointer-events: none;
+  filter: blur(25px);
+}
+
+.kanban-column__glow-center {
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  width: 40%;
+  height: 50%;
+  
+  background: radial-gradient(ellipse at center, rgba(180, 150, 255, 0.3) 0%, transparent 50%);
+  pointer-events: none;
+  filter: blur(15px);
+}
+
+.kanban-column__add-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.kanban-column__add-content svg {
+  opacity: 0.85;
+  filter: drop-shadow(0 0 8px rgba(200, 180, 255, 0.3));
+  width: 18px;
+  height: 18px;
+}
+
+.kanban-column__add-content span {
+  text-shadow: 0 0 20px rgba(200, 180, 255, 0.3);
 }
 
 .kanban-column__add-btn svg {

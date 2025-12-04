@@ -1,5 +1,6 @@
 /* =========================================
    3D Neumorphic Button Component
+   Glowing variant with enhanced 3D effect
    ========================================= */
 
 .neu-button {
@@ -47,47 +48,106 @@
   transform: none;
 }
 
-/* Primary variant - Glowing gradient button */
-.neu-button--primary {
+/* =========================================
+   PRIMARY GLOW VARIANT - Premium Button
+   ========================================= */
+
+.neu-button--primary-glow {
   position: relative;
-  background: linear-gradient(135deg, #7C5FFF 0%, #5051F9 50%, #4142E0 100%);
-  padding: 14px 24px;
-  font-weight: 700;
-  font-size: 0.9375rem;
+  padding: 20px 48px;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: 'Inter', 'DM Sans', sans-serif;
+  color: #ffffff;
+  letter-spacing: 0.02em;
   
+  background: linear-gradient(135deg, rgba(88, 60, 180, 0.4) 0%, rgba(120, 80, 200, 0.5) 30%, rgba(100, 70, 190, 0.35) 70%, rgba(70, 50, 150, 0.4) 100%);
+  border: none;
+  border-radius: 16px;
+  
+  cursor: pointer;
+  overflow: hidden;
+  
+  backdrop-filter: blur(10px);
   box-shadow: 
-    0 8px 20px rgba(80, 81, 249, 0.4),
-    inset -2px -2px 8px rgba(0, 0, 0, 0.3),
-    inset 2px 2px 8px rgba(255, 255, 255, 0.15);
+    0 0 30px rgba(130, 90, 220, 0.18),
+    0 0 60px rgba(110, 70, 200, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  
+  transition: all 0.3s ease;
+  user-select: none;
 }
 
-.neu-button--primary::before {
-  content: '';
+.neu-button--primary-glow:hover {
+  box-shadow: 
+    0 0 40px rgba(130, 90, 220, 0.25),
+    0 0 70px rgba(110, 70, 200, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+}
+
+.neu-button--primary-glow:active {
+  transform: scale(0.98) !important;
+  box-shadow: 
+    0 0 20px rgba(130, 90, 220, 0.15),
+    0 0 40px rgba(110, 70, 200, 0.06),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Glow layers */
+.neu-button__glow-outer {
   position: absolute;
-  inset: 0;
-  border-radius: var(--radius-md);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 150%;
   
-  background: radial-gradient(circle at 30% 30%, rgba(107, 108, 250, 0.3), transparent 60%);
+  background: radial-gradient(ellipse at center, rgba(140, 100, 230, 0.4) 0%, rgba(100, 60, 200, 0.2) 40%, transparent 70%);
   pointer-events: none;
+  filter: blur(20px);
 }
 
-.neu-button--primary:hover {
-  background: linear-gradient(135deg, #8B70FF 0%, #6B6CFA 50%, #5051F9 100%);
-  box-shadow: 
-    0 12px 28px rgba(80, 81, 249, 0.35),
-    0 0 20px rgba(80, 81, 249, 0.2),
-    inset -2px -2px 8px rgba(0, 0, 0, 0.3),
-    inset 2px 2px 8px rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
+.neu-button__glow-inner {
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 80%;
+  
+  background: radial-gradient(ellipse at center, rgba(160, 120, 255, 0.5) 0%, rgba(130, 90, 220, 0.3) 30%, transparent 60%);
+  pointer-events: none;
+  filter: blur(25px);
 }
 
-.neu-button--primary:active {
-  background: linear-gradient(135deg, #6B6CFA 0%, #5051F9 50%, #4142E0 100%);
-  box-shadow: 
-    0 4px 12px rgba(80, 81, 249, 0.3),
-    inset -3px -3px 10px rgba(0, 0, 0, 0.4),
-    inset 3px 3px 10px rgba(255, 255, 255, 0.1);
-  transform: translateY(0);
+.neu-button__glow-center {
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  width: 40%;
+  height: 50%;
+  
+  background: radial-gradient(ellipse at center, rgba(180, 150, 255, 0.35) 0%, transparent 50%);
+  pointer-events: none;
+  filter: blur(15px);
+}
+
+.neu-button__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.neu-button__text {
+  text-shadow: 0 0 20px rgba(200, 180, 255, 0.3);
+}
+
+.neu-button__icon {
+  opacity: 0.85;
+  filter: drop-shadow(0 0 8px rgba(200, 180, 255, 0.3));
 }
 
 /* Icon button variant */
